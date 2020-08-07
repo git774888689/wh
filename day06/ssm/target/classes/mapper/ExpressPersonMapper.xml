@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoshu.dao.ExpressPersonMapper">
+	<select id="findAll" resultType="com.xiaoshu.vo.ExpressPersonVo">
+		SELECT
+		p.*,c.express_name AS cName,c.status
+		FROM
+		express_person p,express_company c
+		<where>
+			p.express_type_id=c.id
+		</where>
+	</select>
+	
+</mapper>
