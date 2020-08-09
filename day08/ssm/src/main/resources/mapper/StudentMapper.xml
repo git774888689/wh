@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoshu.dao.StudentMapper">
+	<select id="findAll" resultType="com.xiaoshu.vo.StudentVo">
+		SELECT
+		ss.*,s.sname
+		FROM student ss,school s
+		WHERE ss.schoolid=s.id
+	</select>
+</mapper>
