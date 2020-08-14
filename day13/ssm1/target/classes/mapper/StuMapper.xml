@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoshu.dao.StuMapper">
+	<select id="findAll" resultType="com.xiaoshu.vo.StuVo">
+		SELECT
+		s.*,m.m_name AS mName
+		FROM stu_tb s,major_tb m
+		<where>
+			s.m_id=m.m_id
+			<if test="sName!=null and sName!=''">
+				and s.s_name like '%${sName}%'
+			</if>
+			<if test="mId!=null and mId!=0">
+				and s.m_id=#{mId}
+			</if>
+			<if test="start!=null">
+				and s.s_birth&gt;=#{start}
+			</if>
+			<if test="end!=null">
+				and s.s_birth&lt;=#{end}
+			</if>
+		</where>
+	</select>
+	
+	<select id="tongji" resultType="com.xiaoshu.vo.StuVo">
+		SELECT
+		COUNT(s.s_id) as num,
+		m.m_name AS mName
+		FROM stu_tb s,major_tb m
+		WHERE s.m_id=m.m_id
+		GROUP BY m.m_id
+	</select>
+</mapper>

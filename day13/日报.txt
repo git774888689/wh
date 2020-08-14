@@ -1,0 +1,16 @@
+
+
+上午学习内容：背诵面试题一节课，
+
+1.Redis内容的回顾（面试题）
+2.Redis的概念
+redis 是一个 C 语言开发的，基于内存的，高性能 key-value 形式的，
+单线程的 NoSQL数据库。
+Redis的提供两种持久化机制 RDB 和 AOF 机制，
+Redis的好处及使用场景：减轻数据库的压力。
+支持丰富数据类型，支持 string，list，set，Zset，hash 等
+
+3.SSM项目整合Redis的环境的搭建（配置jar包配置文件）
+使用Redis的相关的软件
+4.Redis的代码的编程（前后台）
+5.Redis的测试结果
