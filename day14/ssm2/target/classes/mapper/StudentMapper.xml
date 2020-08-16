@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoshu.dao.StudentMapper">
+	<select id="findAll" resultType="com.xiaoshu.vo.StudentVo">
+		SELECT
+		s.*,t.name AS tName
+		FROM student s,teacher t
+		<where>
+			s.teacherid=t.id
+			<if test="name!=null and name!=''">
+				and s.name like '%${name}%'
+			</if>
+			<if test="grade!=null and grade!=''">
+				and s.grade=#{grade}
+			</if>
+			<if test="entrytime!=null">
+				and s.entrytime=#{entrytime}
+			</if>
+		</where>
+	</select>
+	
+	<select id="tongji" resultType="com.xiaoshu.vo.StudentVo">
+		SELECT
+		COUNT(s.id) AS num,t.name AS tName
+		FROM student s,teacher t
+		WHERE s.teacherid=t.id
+		GROUP BY t.name
+	</select>
+</mapper>
