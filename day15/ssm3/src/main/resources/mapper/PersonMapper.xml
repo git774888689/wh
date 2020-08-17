@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoshu.dao.PersonMapper">
+	<select id="findAll" resultType="com.xiaoshu.vo.PersonVo">
+		SELECT
+		p.*,b.b_name AS bName
+		FROM
+		jiyun_person p,jiyun_bank b
+		<where>
+			p.b_id=b.b_id
+			<if test="pName!=null and pName!=''">
+				and p.p_name like '%${pName}%'
+			</if>
+			<if test="bId!=null and bId!='0'">
+				and p.b_id=#{bId}
+			</if>
+			<if test="createtime!=null">
+				and p.createtime=#{createtime}
+			</if>
+		</where>
+	</select>
+	
+	<select id="tongji" resultType="com.xiaoshu.vo.PersonVo">
+		SELECT
+		COUNT(p.p_id) AS num,b.b_name AS bName
+		FROM
+		jiyun_person p,jiyun_bank b
+		WHERE
+		p.b_id=b.b_id
+		GROUP BY b.b_name
+	</select>
+	
+</mapper>
